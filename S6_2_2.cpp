@@ -7,7 +7,6 @@ int main()
     char charArray[36];
     int index = 0;
 
-    // Populate charArray with 'a' to 'z' and '0' to '9'
     for (char ch = 'a'; ch <= 'z'; ch++)
     {
         charArray[index++] = ch;
@@ -17,32 +16,26 @@ int main()
         charArray[index++] = ch;
     }
 
-    // Hardcoded transition table
     int transitiontable[3][36];
     for (int i = 0; i < 36; i++)
     {
         if (i < 26)
         {
-            // From initial state (1), lowercase alphabets lead to state 2
             transitiontable[1][i] = 2;
         }
         else
         {
-            // From initial state (1), digits lead to dead state (0)
             transitiontable[1][i] = 0;
         }
-        // From state 2, both alphabets and digits stay in state 2
         transitiontable[2][i] = 2;
     }
 
-    // Input for accepting states
     int acceptingSTATE = 2;
 
     cout << "Input string: ";
     string Inputstring;
     cin >> Inputstring;
 
-    // Validation logic
     int currentstate = initialstate;
     bool isValid = true;
 
@@ -65,7 +58,6 @@ int main()
         }
     }
 
-    // Check if the final state is accepting
     if (isValid && currentstate == acceptingSTATE)
     {
         cout << "Valid string" << endl;
